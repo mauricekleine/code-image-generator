@@ -37,17 +37,19 @@ export default function Page() {
 
       <CodeBlock
         code={`
-          // TypeScript < 5.1
-          export function MyPlainStringComponent() {
-            return <>My plain string component</>;
-          }
+$ npx taze major -w # update all dependencies to latest major version
 
-          // TypeScript 5.1+
-          export function MyPlainStringComponent() {
-            return "My plain string component";
-          }
+mauricekleine.com - 2 minor, 3 patch
+
+  date-fns            ~8mo   ~2.29.3  →   ~2.30.0  ~3d
+  simple-icons        ~10d   ~8.11.0  →   ~8.12.1  ~3d
+  framer-motion       ~15d  ~10.12.4  →  ~10.12.7  ⩽1d
+  next                ~11d   ~13.3.1  →   ~13.3.4  ~2d
+  @types/node    dev   ~5d  ~18.16.2  →  ~18.16.3  ~4d
+
+ℹ changes written to package.json, run npm i to install updates.
         `}
-        language="tsx"
+        language="shell-session"
         ref={printRef}
       />
     </main>

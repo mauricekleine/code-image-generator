@@ -4,17 +4,35 @@ import prettier from "prettier/standalone";
 import prism from "prismjs";
 import { forwardRef } from "react";
 
+import "prismjs/components/prism-bash";
 import "prismjs/components/prism-css";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-shell-session";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-tsx";
 
 import "./code-block-theme.css";
 
-type Language = "css" | "html" | "js" | "jsx" | "ts" | "tsx";
+type Language =
+  | "bash"
+  | "css"
+  | "html"
+  | "js"
+  | "jsx"
+  | "shell-session"
+  | "ts"
+  | "tsx";
 
 const parseAndHighlight = (code: string, language: Language) => {
+  if (["bash", "shell-session"].includes(language)) {
+    return marked(`\`\`\`${language}\n${code}`, {
+      highlight: (code) => {
+        return prism.highlight(code, prism.languages[language], language);
+      },
+    });
+  }
+
   const prettified = prettier.format(code, {
     parser: "babel-ts",
     plugins: [parserBabel],
